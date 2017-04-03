@@ -1,0 +1,27 @@
+{
+  "name": "alexa",
+  "version": "1.0.0",
+  "description": "houseparty skill",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sputn1ck/konpoardey.git"
+  },
+  "keywords": [
+    "alexa",
+    "skill",
+    "party"
+  ],
+  "author": "sputn1ck",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sputn1ck/konpoardey/issues"
+  },
+  "homepage": "https://github.com/sputn1ck/konpoardey#readme",
+  "dependencies": {
+    "alexa-sdk": "^1.0.7"
+  }
+}
