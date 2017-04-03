@@ -1,0 +1,13 @@
+SpruchIntent Körper wo
+SpruchIntent Abbruch
+SpruchIntent Mafia
+RegisterIntent {Name} ist angekommen
+RegisterIntent Melde {Name} an
+RegisterIntent {Name} ist da
+DeRegisterIntent {Name} ist gegangen
+ListNames wer ist da
+ListNames wer ist alles da
+ListNames welche gulaschs sind hier
+RandomName verteile einen shot
+RandomName zufallsname
+RandomNames {Count} Namen

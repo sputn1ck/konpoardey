@@ -1,0 +1,40 @@
+{
+  "intents": [
+    {
+      "intent": "SpruchIntent"
+    },
+    {
+      "intent": "RegisterIntent",
+      "slots": [
+        {
+          "name": "Name",
+          "type": "AMAZON.DE_FIRST_NAME"
+        }
+      ]
+    },
+    {
+      "intent": "DeRegisterIntent",
+      "slots": [
+        {
+          "name": "Name",
+          "type": "AMAZON.DE_FIRST_NAME"
+        }
+      ]
+    },
+    {
+      "intent": "ListNames"
+    },
+    {
+      "intent": "RandomName"
+    },
+    {
+      "intent": "RandomNames",
+      "slots": [
+        {
+          "name": "Count",
+          "type": "AMAZON.NUMBER"
+        }
+      ]
+    }
+  ]
+}
