@@ -1,6 +1,7 @@
 SpruchIntent Körper wo
 SpruchIntent Abbruch
 SpruchIntent Mafia
+SpruchIntent leck mich am tisch
 RegisterIntent {Name} ist angekommen
 RegisterIntent Melde {Name} an
 RegisterIntent {Name} ist da
@@ -11,3 +12,8 @@ ListNamesIntent welche gulaschs sind hier
 RandomNameIntent verteile einen shot
 RandomNameIntent zufallsname
 RandomNamesIntent {Count} Namen
+BeerPongIntent starte ein Bierpong spiel
+BeerPongIntent starte ein bier spiel
+BeerPongIntent starte ein spiel
+BeerPongIntent starte ein match
+BeerPongIntent mach zwei teams

@@ -35,6 +35,9 @@
         }
       ],
       "intent": "RandomNamesIntent"
+    },
+    {
+      "intent": "BeerPongIntent"
     }
   ]
 }
