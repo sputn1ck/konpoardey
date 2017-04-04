@@ -34,6 +34,9 @@ var handlers = {
     'BeerPongIntent': function() {
         this.emit(':tell', getBeerPongMatch());
     },
+    'RandomCardIntent': function() {
+        this.emit(':tell', getRandomCard());
+    },
     'Unhandled': function() {
         console.log("UNHANDLED");
         this.emit(':tell', 'wat?');
@@ -75,9 +78,35 @@ function getRandomInt(min, max) {
 }
 
 var users = ["Kon", "Jan", "Ripper"];
+var beerPongUsers;
 var disses = [
     "Leck mich am Tisch",
     "Ripper Abbruch",
     "Fischer Abbruch",
     "Da hat sich der Ripper mal wieder mit dem Hammer geföhnt"
 ];
+var assesDrawn = 0;
+function getRandomCard() {
+    var card = Math.floor(Math.random() * (14 - 5 + 1 ) + 5);
+    if (card <= 10 && card % 2 === 0) 
+        return "Trinke "+ card + " Schlücke";
+    else if(card <= 10 && card % 2 === 1)
+        return "Verteile " + card + " Schlücke";
+    else if(card == 11)
+        return getRandom(users, 1);
+    else if(card == 12)
+        return "Alle Frauen Trinken"
+    else if(card == 13)
+        return "Alle Männer Trinken"
+    else if(card == 14) {
+        assesDrawn++;
+        if(assesDrawn === 4) {
+            assesDrawn = 0;
+            return "Das war das vierte Ass. Trinken einen Shot du dumme Sau";
+        } else {
+            return "Das war Ass nummer " + assesDrawn + "."
+        }
+    }
+        
+        
+}

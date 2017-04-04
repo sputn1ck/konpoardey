@@ -38,6 +38,9 @@
     },
     {
       "intent": "BeerPongIntent"
+    },
+    {
+      "intent": "RandomCardIntent"
     }
   ]
 }

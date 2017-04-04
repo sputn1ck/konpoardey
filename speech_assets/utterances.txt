@@ -17,3 +17,6 @@ BeerPongIntent starte ein bier spiel
 BeerPongIntent starte ein spiel
 BeerPongIntent starte ein match
 BeerPongIntent mach zwei teams
+RandomCardIntent ziehe eine Karte
+RandomCardIntent gib mir eine Karte
+RandomCardIntent gib Karte
