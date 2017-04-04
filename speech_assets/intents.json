@@ -4,37 +4,37 @@
       "intent": "SpruchIntent"
     },
     {
-      "intent": "RegisterIntent",
       "slots": [
         {
           "name": "Name",
           "type": "AMAZON.DE_FIRST_NAME"
         }
-      ]
+      ],
+      "intent": "RegisterIntent"
     },
     {
-      "intent": "DeRegisterIntent",
       "slots": [
         {
           "name": "Name",
           "type": "AMAZON.DE_FIRST_NAME"
         }
-      ]
+      ],
+      "intent": "DeRegisterIntent"
     },
     {
-      "intent": "ListNames"
+      "intent": "ListNamesIntent"
     },
     {
-      "intent": "RandomName"
+      "intent": "RandomNameIntent"
     },
     {
-      "intent": "RandomNames",
       "slots": [
         {
           "name": "Count",
           "type": "AMAZON.NUMBER"
         }
-      ]
+      ],
+      "intent": "RandomNamesIntent"
     }
   ]
 }

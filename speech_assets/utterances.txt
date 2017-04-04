@@ -5,9 +5,9 @@ RegisterIntent {Name} ist angekommen
 RegisterIntent Melde {Name} an
 RegisterIntent {Name} ist da
 DeRegisterIntent {Name} ist gegangen
-ListNames wer ist da
-ListNames wer ist alles da
-ListNames welche gulaschs sind hier
-RandomName verteile einen shot
-RandomName zufallsname
-RandomNames {Count} Namen
+ListNamesIntent wer ist da
+ListNamesIntent wer ist alles da
+ListNamesIntent welche gulaschs sind hier
+RandomNameIntent verteile einen shot
+RandomNameIntent zufallsname
+RandomNamesIntent {Count} Namen
