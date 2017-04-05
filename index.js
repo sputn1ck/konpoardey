@@ -78,7 +78,7 @@ function getRandom(arr, n) {
     var result = new Array(n),
         len = arr.length,
         taken = new Array(len);
-  if(arr.length === n ){
+  if(arr.length == n ){
       result = arr.splice(0)
       shuffle(result)
       return result;
@@ -93,11 +93,17 @@ function getRandom(arr, n) {
     return result;
 }
 
-function shuffle(a) {
-    for (let i = a.length; i; i--) {
-        let j = Math.floor(Math.random() * i);
-        [a[i - 1], a[j]] = [a[j], a[i - 1]];
-    }
+function shuffle (arr) {
+  var i = 0
+    , j = 0
+    , temp = null
+
+  for (i = arr.length - 1; i > 0; i -= 1) {
+    j = Math.floor(Math.random() * (i + 1))
+    temp = arr[i]
+    arr[i] = arr[j]
+    arr[j] = temp
+  }
 }
 
 //Guest Construct
@@ -114,10 +120,10 @@ function getRandomCard() {
     var card = Math.floor(Math.random() * (14 - 5 + 1 ) + 5);
     if (card <= 10 && card % 2 === 0) 
         return "Trinke "+ card + " Schlücke";
-    else if(card <= 10 && card % 2 === 1)
+    else if(card <= 10 && card % 2 == 1)
         return "Verteile " + card + " Schlücke";
     else if(card == 11)
-        return getRandom(guests, 1);
+        return getRandom(guests, 1) + " muss einen trinken";
     else if(card == 12)
         return "Alle Frauen Trinken"
     else if(card == 13)
@@ -168,5 +174,8 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-
-
+console.log(dissBuilder());
+console.log(getRandomCard());
+console.log(getBeerPongMatch());
+console.log(getRandomName());
+console.log(shuffle([0, 1, 2]));
