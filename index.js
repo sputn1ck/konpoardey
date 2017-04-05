@@ -26,10 +26,10 @@ var handlers = {
         this.emit(':tell', 'von meiner party flieht niemand');
     },
     'ListNamesIntent': function() {
-        this.emit(':tell', users.join(" ,"));
+        this.emit(':tell', guests.join(" ,"));
     },
     'RandomNameIntent': function() {
-        this.emit(':tell', users[getRandomInt(0, users.length - 1)]);
+        this.emit(':tell', guests[getRandomInt(0, guests.length - 1)]);
     },
     'BeerPongIntent': function() {
         this.emit(':tell', getBeerPongMatch());
@@ -65,6 +65,7 @@ function getBeerPongMatch() {
     return "" + s[0] + " und " + s[1] + " spielen gegen "+ s[2] + " und " + s[3];
 }
 
+//gets n unique items from array n
 function getRandom(arr, n) {
     var result = new Array(n),
         len = arr.length,
@@ -79,8 +80,47 @@ function getRandom(arr, n) {
     return result;
 }
 
+//Guest Construct
+var guests = ["Kon", "Jan", "Ripper"];
+
+//Beerpong Player construct
+var players = ["Kon", "Jan", "Ripper", "Robin", "Finn", "Fabian"];
+var recentPlayers = []
+var disses = [
+    "Leck mich am Tisch",
+    "Ripper Abbruch",
+    "Fischer Abbruch",
+    "Da hat sich der Ripper mal wieder mit dem Hammer geföhnt"
+];
+var aceDrawn = 0;
+function getRandomCard() {
+    var card = Math.floor(Math.random() * (14 - 5 + 1 ) + 5);
+    if (card <= 10 && card % 2 === 0) 
+        return "Trinke "+ card + " Schlücke";
+    else if(card <= 10 && card % 2 === 1)
+        return "Verteile " + card + " Schlücke";
+    else if(card == 11)
+        return getRandom(guests, 1);
+    else if(card == 12)
+        return "Alle Frauen Trinken"
+    else if(card == 13)
+        return "Alle Männer Trinken"
+    else if(card == 14) {
+        aceDrawn++;
+        if(aceDrawn === 4) {
+            aceDrawn = 0;
+            return "Das war das vierte Ass. Trinken einen Shot du dumme Sau";
+        } else {
+            return "Das war Ass nummer " + aceDrawn + "."
+        }
+    }
+        
+        
+}
+
+
 function registerUser(name) {
-    users.push(name);
+    guests.push(name);
 }
 
 
@@ -90,39 +130,4 @@ function getRandomDiss() {
 
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
-}
-
-var users = ["Kon", "Jan", "Ripper"];
-var players = ["Kon", "Jan", "Ripper", "Robin", "Finn", "Fabian"];
-var recentPlayers = []
-var disses = [
-    "Leck mich am Tisch",
-    "Ripper Abbruch",
-    "Fischer Abbruch",
-    "Da hat sich der Ripper mal wieder mit dem Hammer geföhnt"
-];
-var assesDrawn = 0;
-function getRandomCard() {
-    var card = Math.floor(Math.random() * (14 - 5 + 1 ) + 5);
-    if (card <= 10 && card % 2 === 0) 
-        return "Trinke "+ card + " Schlücke";
-    else if(card <= 10 && card % 2 === 1)
-        return "Verteile " + card + " Schlücke";
-    else if(card == 11)
-        return getRandom(users, 1);
-    else if(card == 12)
-        return "Alle Frauen Trinken"
-    else if(card == 13)
-        return "Alle Männer Trinken"
-    else if(card == 14) {
-        assesDrawn++;
-        if(assesDrawn === 4) {
-            assesDrawn = 0;
-            return "Das war das vierte Ass. Trinken einen Shot du dumme Sau";
-        } else {
-            return "Das war Ass nummer " + assesDrawn + "."
-        }
-    }
-        
-        
 }
