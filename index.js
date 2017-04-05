@@ -14,7 +14,7 @@ var handlers = {
         this.emit(':tell', 'Mafia vor dem Herren');
     },
     'SpruchIntent': function() {
-        this.emit(':tell', getRandomDiss());
+        this.emit(':tell', dissBuilder());
     },
     'RegisterIntent': function() {
         var name = this.event.request.intent.slots.Name.value;
@@ -29,7 +29,7 @@ var handlers = {
         this.emit(':tell', guests.join(" ,"));
     },
     'RandomNameIntent': function() {
-        this.emit(':tell', guests[getRandomInt(0, guests.length - 1)]);
+        this.emit(':tell', getRandomName());
     },
     'BeerPongIntent': function() {
         this.emit(':tell', getBeerPongMatch());
@@ -45,6 +45,12 @@ var handlers = {
 
 };
 
+
+/*
+*   returns 4 unique players for a game of beerpong
+*   always returns 4 fresh players unless slots cannot be filled
+*   
+*/
 function getBeerPongMatch() {
     var eligblePlayers = players.slice(0);
   
@@ -65,11 +71,18 @@ function getBeerPongMatch() {
     return "" + s[0] + " und " + s[1] + " spielen gegen "+ s[2] + " und " + s[3];
 }
 
+
 //gets n unique items from array n
 function getRandom(arr, n) {
+    
     var result = new Array(n),
         len = arr.length,
         taken = new Array(len);
+  if(arr.length === n ){
+      result = arr.splice(0)
+      shuffle(result)
+      return result;
+    }
     if (n > len)
         throw new RangeError("getRandom: more elements taken than available");
     while (n--) {
@@ -80,18 +93,22 @@ function getRandom(arr, n) {
     return result;
 }
 
+function shuffle(a) {
+    for (let i = a.length; i; i--) {
+        let j = Math.floor(Math.random() * i);
+        [a[i - 1], a[j]] = [a[j], a[i - 1]];
+    }
+}
+
 //Guest Construct
 var guests = ["Kon", "Jan", "Ripper"];
 
 //Beerpong Player construct
 var players = ["Kon", "Jan", "Ripper", "Robin", "Finn", "Fabian"];
 var recentPlayers = []
-var disses = [
-    "Leck mich am Tisch",
-    "Ripper Abbruch",
-    "Fischer Abbruch",
-    "Da hat sich der Ripper mal wieder mit dem Hammer geföhnt"
-];
+
+
+//return Action based on Drinking games
 var aceDrawn = 0;
 function getRandomCard() {
     var card = Math.floor(Math.random() * (14 - 5 + 1 ) + 5);
@@ -109,7 +126,7 @@ function getRandomCard() {
         aceDrawn++;
         if(aceDrawn === 4) {
             aceDrawn = 0;
-            return "Das war das vierte Ass. Trinken einen Shot du dumme Sau";
+            return "Das war das vierte Ass. Trinke einen Shot du dumme Sau";
         } else {
             return "Das war Ass nummer " + aceDrawn + "."
         }
@@ -119,15 +136,37 @@ function getRandomCard() {
 }
 
 
+
+var namedDisses = [
+    "Leck mich am Tisch",
+    "%NAME% abbruch",
+    "Da hat sich %NAME% mal wieder mit dem Hammer geföhnt",
+    "%NAME% ist eine dumme sau"
+];
+//returns personalized disses
+function dissBuilder() {
+
+    var replacements = {"%NAME%" : getRandomName()},
+        str = namedDisses[getRandomInt(0, namedDisses.length - 1)];
+    str = str.replace(/%\w+%/g, function(all) {
+    return replacements[all] || all;
+    });
+    return str
+}
+
+
+function getRandomName() {
+    return guests[getRandomInt(0, guests.length - 1)];
+}
+
 function registerUser(name) {
     guests.push(name);
 }
 
 
-function getRandomDiss() {
-    return disses[getRandomInt(0, disses.length - 1)];
-}
-
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+
+
