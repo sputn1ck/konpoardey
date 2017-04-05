@@ -12,6 +12,8 @@ ListNamesIntent welche gulaschs sind hier
 RandomNameIntent verteile einen shot
 RandomNameIntent zufallsname
 RandomNamesIntent {Count} Namen
+RandomNamesIntent gib mir {Count} Namen
+RandomNamesIntent verteile {Count} shots
 BeerPongIntent starte ein Bierpong spiel
 BeerPongIntent starte ein bier spiel
 BeerPongIntent starte ein spiel

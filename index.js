@@ -31,6 +31,9 @@ var handlers = {
     'RandomNameIntent': function() {
         this.emit(':tell', getRandomName());
     },
+    'RandomNamesIntent' : function() {
+        this.emit(':tell', getRandomNames(parseInt(this.event.request.intent.slots.Count.value)));
+    },
     'BeerPongIntent': function() {
         this.emit(':tell', getBeerPongMatch());
     },
@@ -79,7 +82,7 @@ function getRandom(arr, n) {
         len = arr.length,
         taken = new Array(len);
   if(arr.length == n ){
-      result = arr.splice(0)
+      result = arr.slice(0)
       shuffle(result)
       return result;
     }
@@ -107,7 +110,7 @@ function shuffle (arr) {
 }
 
 //Guest Construct
-var guests = ["Kon", "Jan", "Ripper"];
+const guests = ["Kon", "Jan", "Ripper", "Robin", "Finn", "Fabian"];
 
 //Beerpong Player construct
 var players = ["Kon", "Jan", "Ripper", "Robin", "Finn", "Fabian"];
@@ -160,6 +163,19 @@ function dissBuilder() {
     return str
 }
 
+function getRandomNames(num) {
+    if(num > guests.length){
+        return "So viele Leute gibt es hier nicht du spacko";
+    }
+    var str = "";
+    var arr = getRandom(guests, num);
+    str += arr[0];
+    for(var i = 1; i < arr.length; i++) {
+        str+= " und " + arr[i];
+    }
+    return str;
+    
+}
 
 function getRandomName() {
     return guests[getRandomInt(0, guests.length - 1)];
@@ -173,9 +189,3 @@ function registerUser(name) {
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
-
-console.log(dissBuilder());
-console.log(getRandomCard());
-console.log(getBeerPongMatch());
-console.log(getRandomName());
-console.log(shuffle([0, 1, 2]));
