@@ -46,7 +46,22 @@ var handlers = {
 };
 
 function getBeerPongMatch() {
-    var s = getRandom(users, 4);
+    var eligblePlayers = players.slice(0);
+  
+    recentPlayers.forEach(function(element) {
+    var index = eligblePlayers.indexOf(element)
+    if (index > -1) {
+       eligblePlayers.splice(index, 1);
+    }
+    });
+    if(eligblePlayers.length < 4) {
+      var n = 4-eligblePlayers.length;
+      eligblePlayers = eligblePlayers.concat(getRandom(recentPlayers, n))
+      recentPlayers = [];
+    }
+    var s = getRandom(eligblePlayers, 4);
+    recentPlayers = recentPlayers.concat(s);
+    
     return "" + s[0] + " und " + s[1] + " spielen gegen "+ s[2] + " und " + s[3];
 }
 
@@ -78,7 +93,8 @@ function getRandomInt(min, max) {
 }
 
 var users = ["Kon", "Jan", "Ripper"];
-var beerPongUsers;
+var players = ["Kon", "Jan", "Ripper", "Robin", "Finn", "Fabian"];
+var recentPlayers = []
 var disses = [
     "Leck mich am Tisch",
     "Ripper Abbruch",
